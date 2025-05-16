@@ -1,0 +1,11 @@
+{
+  "name": "التحليل الرقمي القرآني",
+  "short_name": "تحليل قرآني",
+  "start_url": "/Ashamed-almjed/?action=camera",
+  "display": "standalone",
+  "background_color": "#fdfcf9",
+  "theme_color": "#2e7d32",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192.png",
