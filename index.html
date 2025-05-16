@@ -37,6 +37,14 @@
     }
   </style>
 </head>
+  <button id="installBtn"
+        onclick="installApp()"
+        style="display:none; position:fixed; top:16px; right:16px; z-index:9999;
+               background-color:#2e7d32; color:white; padding:10px 14px; border:none;
+               border-radius:10px; font-size:14px; box-shadow:0 2px 6px rgba(0,0,0,0.2);">
+  تثبيت
+  </button>
+  
 <body id="body" class="bg-[#fdfcf9] text-[#2e7d32] p-6">
 <div class="fixed top-4 left-4 z-50">
   <button onclick="toggleDarkMode()" class="bg-gray-800 text-white px-3 py-1 rounded-xl text-sm shadow-md hover:bg-gray-700">🌓 وضع الليل</button>
@@ -458,6 +466,25 @@ window.addEventListener("DOMContentLoaded", function () {
       .then(reg => console.log('✅ Service Worker مسجّل:', reg))
       .catch(err => console.log('❌ فشل تسجيل Service Worker:', err));
   }
+</script>
+  <script>
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  document.getElementById('installBtn').style.display = 'block';
+});
+
+function installApp() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(() => {
+      deferredPrompt = null;
+      document.getElementById('installBtn').style.display = 'none';
+    });
+  }
+}
 </script>
 </body>
 </html>
